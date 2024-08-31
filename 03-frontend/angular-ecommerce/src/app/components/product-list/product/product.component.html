@@ -1,0 +1,27 @@
+<mat-card class="product-card" appearance="outlined">
+  <img
+    mat-card-image
+    src="assets/images/images.png"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-content style="text-align: center">
+    <span
+      title="{{ name }}"
+      class="d-inline-block text-truncate"
+      style="max-width: 200px; font-weight: 600"
+    >
+      {{ name }}
+    </span>
+    <p>
+      {{ description }}
+    </p>
+    <h6>{{ price }}</h6>
+  </mat-card-content>
+  <mat-card-actions style="justify-content: space-around">
+    <button mat-flat-button>
+      <mat-icon>add_shopping_cart</mat-icon>
+      Add to cart
+    </button>
+    <button mat-stroked-button>View details</button>
+  </mat-card-actions>
+</mat-card>
