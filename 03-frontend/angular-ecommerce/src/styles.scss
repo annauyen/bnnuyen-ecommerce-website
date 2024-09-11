@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/azure-blue.css";
+@import "bootstrap/dist/css/bootstrap.css";
+
+:root {
+  --dark-purple: #674188;
+  --light-purple: #ebddff;
+  --light-pink: #fae6f5;
+  --beige: #f7efe5;
+  --background-color: #fef7ff;
+}
+$base-color: #035e7b;
+$secondary-color: #0379a0;
+$button-primary: #035e7b;
+$background-color: #fffefd;
+
+html,
+body {
+  height: 100%;
+  padding-top: 2rem;
+  background-color: var(--background-color);
+  font-size: 12pt;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--dark-purple);
+}

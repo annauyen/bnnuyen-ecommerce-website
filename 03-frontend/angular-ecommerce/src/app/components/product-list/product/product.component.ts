@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
   imports: [MatButtonModule, MatCardModule, MatIcon],
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css',
+  styleUrl: './product.component.scss',
 })
 export class ProductComponent {
   @Input({ required: true }) name!: string;

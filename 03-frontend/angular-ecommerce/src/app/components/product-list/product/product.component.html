@@ -2,7 +2,7 @@
   <img
     mat-card-image
     src="assets/images/images.png"
-    alt="Photo of a Shiba Inu"
+    alt="Photo of the product"
   />
   <mat-card-content style="text-align: center">
     <span
@@ -12,16 +12,21 @@
     >
       {{ name }}
     </span>
-    <p>
+    <br />
+    <span
+      title="{{ description }}"
+      class="d-inline-block text-truncate"
+      style="max-width: 200px"
+    >
       {{ description }}
-    </p>
+    </span>
     <h6>{{ price }}</h6>
   </mat-card-content>
   <mat-card-actions style="justify-content: space-around">
-    <button mat-flat-button>
+    <button mat-flat-button class="cart-button">
       <mat-icon>add_shopping_cart</mat-icon>
       Add to cart
     </button>
-    <button mat-stroked-button>View details</button>
+    <button mat-stroked-button class="details-button">View details</button>
   </mat-card-actions>
 </mat-card>

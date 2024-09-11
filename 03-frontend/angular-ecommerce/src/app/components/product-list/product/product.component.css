@@ -1,9 +1,0 @@
-.product-card {
-  max-width: 400px;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.product-card:hover {
-  transform: scale(1.05);
-}

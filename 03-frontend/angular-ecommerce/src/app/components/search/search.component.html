@@ -1,0 +1,16 @@
+<form class="d-flex ms-auto" role="search">
+  <input
+    #searchKeyword
+    class="form-control me-2 search-bar"
+    type="search"
+    placeholder="Type products"
+    aria-label="Type products"
+    (keyup.enter)="onSearch($event, searchKeyword.value)"
+  />
+  <button
+    class="btn btn-outline-light search-btn d-flex"
+    (click)="onSearch($event, searchKeyword.value)"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+</form>

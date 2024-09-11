@@ -1,0 +1,24 @@
+.active-link {
+  font-weight: bold;
+}
+.navbar {
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  background-color: var(--dark-purple) !important;
+  color: var(--beige) !important;
+  li.nav-item {
+    a.nav-link {
+      color: var(--beige) !important;
+    }
+  }
+  .navbar-brand {
+    color: var(--beige) !important;
+  }
+}
+
+.dropdown-menu {
+  background-color: var(--beige);
+
+  a.nav-link {
+    color: var(--dark-purple) !important;
+  }
+}

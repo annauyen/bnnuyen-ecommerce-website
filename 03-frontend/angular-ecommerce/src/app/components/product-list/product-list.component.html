@@ -1,4 +1,4 @@
-<div class="container mt-1">
+<div class="container mt-3">
   <h3>Our Products</h3>
   <div class="row">
     <div
@@ -10,6 +10,14 @@
         description="{{ product.description }}"
         price="{{ product.unitPrice }}"
       ></app-product>
+    </div>
+
+    <div
+      *ngIf="products?.length == 0"
+      class="alert alert-warning col-md-12"
+      role="alert"
+    >
+      No products found.
     </div>
   </div>
 </div>
