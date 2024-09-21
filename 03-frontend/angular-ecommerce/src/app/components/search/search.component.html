@@ -6,6 +6,7 @@
     placeholder="Type products"
     aria-label="Type products"
     (keyup.enter)="onSearch($event, searchKeyword.value)"
+    (keyup)="onSearchKeyup(searchKeyword.value)"
   />
   <button
     class="btn btn-outline-light search-btn d-flex"

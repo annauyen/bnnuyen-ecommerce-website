@@ -13,8 +13,14 @@
 .details-button {
   color: var(--dark-purple) !important;
   border-color: var(--dark-purple) !important;
+  background-color: #fff !important;
 }
 
 button {
   font-size: 10pt;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

@@ -26,3 +26,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--dark-purple);
 }
+button {
+  background-color: var(--dark-purple) !important;
+  color: #fff !important;
+}

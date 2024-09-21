@@ -12,8 +12,20 @@ import { Router } from '@angular/router';
 export class SearchComponent {
   constructor(private router: Router) {}
   onSearch(event: Event, searchKeyword: string) {
-    event.preventDefault();
-    console.log(`value=${searchKeyword}`);
-    this.router.navigateByUrl(`/search/${searchKeyword}`);
+    event.preventDefault(); // Prevent default form submit behavior
+    if (searchKeyword.trim()) {
+      // If keyword is not empty, navigate to search
+      this.router.navigateByUrl(`/search/${searchKeyword}`);
+    } else {
+      // If keyword is empty, reset to show all products
+      this.router.navigateByUrl(`/products`);
+    }
+  }
+
+  onSearchKeyup(searchKeyword: string) {
+    if (!searchKeyword.trim()) {
+      // If search keyword is empty, reset to show all products
+      this.router.navigateByUrl(`/products`);
+    }
   }
 }

@@ -20,10 +20,27 @@ export class ProductService {
     return this.getProductsFromResponse(searchUrl);
   }
 
+  getProductsPaginate(
+    page: number,
+    pageSize: number,
+    categoryId: number
+  ): Observable<GetResponse> {
+    const searchUrl =
+      `${this.apiUrl}/search/findByCategoryId?id=${categoryId}` +
+      `&page=${page}&pageSize=${pageSize}`;
+
+    return this.http.get<GetResponse>(searchUrl);
+  }
+
   getProductCategories(): Observable<ProductCategory[]> {
     return this.http
       .get<GetResponse>(this.categoryUrl)
       .pipe(map((response) => response._embedded.productCategory));
+  }
+
+  getProductById(id: number): Observable<Product> {
+    const productUrl = `${this.apiUrl}/${id}`;
+    return this.http.get<Product>(productUrl);
   }
 
   searchProducts(keyword: string): Observable<Product[]> {

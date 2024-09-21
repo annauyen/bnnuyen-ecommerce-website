@@ -8,7 +8,7 @@
         height="20px"
         class="d-inline-block align-text-top"
       />
-      The Book Store</a
+      The Nook Book</a
     >
     <button
       class="navbar-toggler"
@@ -33,7 +33,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Category
+            Categories
           </a>
           <ul class="dropdown-menu">
             <li *ngFor="let category of productCategories">
@@ -45,30 +45,6 @@
                 >{{ category.categoryName }}</a
               >
             </li>
-            <!-- <li>
-              <a
-                routerLink="/category/1"
-                routerLinkActive="active-link"
-                class="nav-link"
-                >Books</a
-              >
-            </li>
-            <li>
-              <a
-                routerLink="/category/2"
-                routerLinkActive="active-link"
-                class="nav-link"
-                >Stationery</a
-              >
-            </li>
-            <li>
-              <a
-                routerLink="/category/3"
-                routerLinkActive="active-link"
-                class="nav-link"
-                >Souvernirs</a
-              >
-            </li> -->
           </ul>
         </li>
       </ul>

@@ -9,6 +9,7 @@
         name="{{ product.name }}"
         description="{{ product.description }}"
         price="{{ product.unitPrice }}"
+        linkToDetail="/products/{{ product.id }}"
       ></app-product>
     </div>
 
@@ -19,5 +20,13 @@
     >
       No products found.
     </div>
+    <mat-paginator
+      length="{{ totalElements }}"
+      pageSize="{{ pageSize }}"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)"
+      aria-label="Select page"
+    >
+    </mat-paginator>
   </div>
 </div>
