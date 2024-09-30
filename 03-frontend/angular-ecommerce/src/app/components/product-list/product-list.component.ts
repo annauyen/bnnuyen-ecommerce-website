@@ -7,6 +7,7 @@ import { Product } from '../../models/product';
 import { NgFor, NgIf } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { K } from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -27,9 +28,11 @@ export class ProductListComponent implements OnInit {
   previousCategoryId = 1;
   searchMode = false;
 
-  pageNumber = 1;
+  pageNumber = 0;
   pageSize = 10;
   totalElements = 0;
+
+  previousKeyword = '';
 
   private productService = inject(ProductService);
 
@@ -52,9 +55,28 @@ export class ProductListComponent implements OnInit {
 
   handleSearchProducts() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
-    this.productService.searchProducts(keyword).subscribe((data) => {
-      this.products = data;
-    });
+    if (this.previousKeyword != keyword) {
+      this.pageNumber = 0;
+    }
+
+    this.previousKeyword = keyword;
+
+    console.log(`keyword=${keyword}, thePageNumber=${this.pageNumber}`);
+
+    // now search for the products using keyword
+    this.productService
+      .searchProducts(this.pageNumber, this.pageSize, keyword)
+      .subscribe(this.processResult());
+  }
+
+  processResult() {
+    return (data: any) => {
+      this.products = data?._embedded?.products;
+      this.pageNumber = data?.page?.number;
+      this.pageSize = data?.page?.size;
+      this.totalElements = data?.page?.totalElements;
+      console.log(this.products);
+    };
   }
 
   handleListProducts() {
@@ -66,28 +88,24 @@ export class ProductListComponent implements OnInit {
     }
 
     if (this.previousCategoryId != this.currentCategoryId) {
-      this.pageNumber = 1;
+      this.pageNumber = 0;
     }
 
     this.previousCategoryId = this.currentCategoryId;
 
     this.productService
       .getProductsPaginate(
-        this.pageNumber - 1,
+        this.pageNumber,
         this.pageSize,
         this.currentCategoryId
       )
-      .subscribe((data) => {
-        this.products = data._embedded.products;
-        this.pageNumber = data.page.number;
-        this.pageSize = data.page.size;
-        this.totalElements = data.page.totalElements;
-      });
+      .subscribe(this.processResult());
   }
 
   onPageChange(event: PageEvent) {
     this.pageNumber = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.handleListProducts();
+    this.getListProducts();
+    console.log('page change event');
   }
 }

@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { map, Observable } from 'rxjs';
 import { Product } from '../models/product';
-import { GetResponse } from '../models/get-response';
 import { ProductCategory } from '../models/product-category';
+import { GetProductsResponse } from '../models/get-products-response';
+import { GetCategoryResponse } from '../models/get-category-response';
 
 @Injectable({
   providedIn: 'root',
@@ -24,17 +25,18 @@ export class ProductService {
     page: number,
     pageSize: number,
     categoryId: number
-  ): Observable<GetResponse> {
+  ): Observable<GetProductsResponse> {
     const searchUrl =
       `${this.apiUrl}/search/findByCategoryId?id=${categoryId}` +
-      `&page=${page}&pageSize=${pageSize}`;
+      `&page=${page}&size=${pageSize}`;
+    console.log(searchUrl);
 
-    return this.http.get<GetResponse>(searchUrl);
+    return this.http.get<GetProductsResponse>(searchUrl);
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
     return this.http
-      .get<GetResponse>(this.categoryUrl)
+      .get<GetCategoryResponse>(this.categoryUrl)
       .pipe(map((response) => response._embedded.productCategory));
   }
 
@@ -43,15 +45,23 @@ export class ProductService {
     return this.http.get<Product>(productUrl);
   }
 
-  searchProducts(keyword: string): Observable<Product[]> {
-    const searchUrl = `${this.apiUrl}/search/findByNameContaining?name=${keyword}`;
+  searchProducts(
+    page: number,
+    pageSize: number,
+    keyword: string
+  ): Observable<GetProductsResponse> {
+    const searchUrl =
+      `${this.apiUrl}/search/findByNameContaining?name=${keyword}` +
+      `&page=${page}&size=${pageSize}`;
 
-    return this.getProductsFromResponse(searchUrl);
+    console.log(searchUrl);
+
+    return this.http.get<GetProductsResponse>(searchUrl);
   }
 
   private getProductsFromResponse(searchUrl: string): Observable<Product[]> {
     return this.http
-      .get<GetResponse>(searchUrl)
+      .get<GetProductsResponse>(searchUrl)
       .pipe(map((response) => response._embedded.products));
   }
 }

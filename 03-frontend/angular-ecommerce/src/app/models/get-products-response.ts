@@ -1,7 +1,7 @@
 import { Product } from './product';
 import { ProductCategory } from './product-category';
 
-export interface GetResponse {
+export interface GetProductsResponse {
   _embedded: {
     products: Product[];
     productCategory: ProductCategory[];
